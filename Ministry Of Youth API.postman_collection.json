@@ -1,0 +1,350 @@
+{
+	"info": {
+		"_postman_id": "d909a88b-9b73-49f2-b7d6-6a4528750475",
+		"name": "Ministry Of Youth API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46257313",
+		"_collection_link": "https://kwamedako.postman.co/workspace/aad5169e-0c31-4e77-8072-a0dc58d7c9af/collection/46257313-d909a88b-9b73-49f2-b7d6-6a4528750475?action=share&source=collection_link&creator=46257313"
+	},
+	"item": [
+		{
+			"name": "Registering a new user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Kwame Dako\",\r\n  \"email\": \"kwame9@example.com\",\r\n  \"password\": \"password12345\",\r\n  \"password_confirmation\": \"password12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/register",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "### User Registration API\n\nThis endpoint allows for the registration of a new user, enabling them to log in successfully.\n\n#### Request Format\n\n- **Method**: POST\n    \n- **URL**: `https://68d20c66cf18.ngrok-free.app/api/register`\n    \n- **Content-Type**: application/json\n    \n\n#### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n- `name` (string): The full name of the user.\n    \n- `email` (string): The email address of the user.\n    \n- `password` (string): The password chosen by the user.\n    \n- `password_confirmation` (string): Confirmation of the password to ensure it matches.\n    \n\n#### Expected Response\n\nUpon successful registration, the server will respond with a JSON object containing:\n\n- A success message indicating that the user has been registered.\n    \n- User details (excluding sensitive information) or a token for authentication.\n    \n\nMake sure to provide valid data for all fields to ensure successful registration."
+			},
+			"response": []
+		},
+		{
+			"name": "Login in",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"kwame9@example.com\",\r\n  \"password\": \"password12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/login",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "## Login API\n\nThis API endpoint is used to authenticate users after they have successfully registered. It allows users to log in by providing their credentials.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `https://68d20c66cf18.ngrok-free.app/api/login`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n- **email** (string): The email address of the user attempting to log in.\n    \n- **password** (string): The password associated with the user's account.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"email\": \"user@example.com\",\n  \"password\": \"your_password\"\n}\n\n ```\n\n### Response\n\nThe response will typically include a status code indicating the success or failure of the login attempt, along with any relevant messages or user data. The structure of the response body may vary based on the outcome of the authentication process.\n\n**Expected Response Structure**:\n\n- **status** (string): Indicates whether the login was successful or failed.\n    \n- **message** (string): A message providing more information about the login attempt.\n    \n- **data** (object, optional): Contains user information if the login is successful.\n    \n\n**Example Response**:\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"userId\": \"12345\",\n    \"email\": \"user@example.com\"\n  }\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "User Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer 12|5NzxkDW5SlrsZb2xGEk21HERGwwZccn3CREgfoPnc439d502",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/logout",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"logout"
+					]
+				},
+				"description": "## Logout API\n\nThis endpoint allows users to log out from their current session. It is typically used to invalidate the user's authentication token and clear any session data on the server side.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `https://68d20c66cf18.ngrok-free.app/api/logout`\n    \n\n#### Request Body\n\nThe request body should be sent in the form of `x-www-form-urlencoded` format and must include the following parameters:\n\n- `userId` (text): The unique identifier of the user who is logging out.\n    \n- `sessionToken` (text): The token associated with the user's session that needs to be invalidated.\n    \n\n### Response\n\nUpon a successful logout request, the server responds with a JSON object containing:\n\n- `status` (string): Indicates the success or failure of the logout operation.\n    \n- `message` (string): A descriptive message providing additional information about the logout process.\n    \n\n#### Example Response Structure\n\n``` json\n{\n  \"status\": \"success\",\n  \"message\": \"User logged out successfully.\"\n}\n\n ```\n\nThis API is essential for maintaining security by ensuring that user sessions can be terminated effectively."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Opportunities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/opportunities",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"opportunities"
+					]
+				},
+				"description": "## API Endpoint: Get Opportunities\n\n### Purpose\n\nThis endpoint retrieves a list of available opportunities from the server. It allows clients to access data regarding various opportunities that can be leveraged for business or personal growth.\n\n### Request Format\n\n- **Method**: GET\n    \n- **URL**: `https://68d20c66cf18.ngrok-free.app/api/opportunities`\n    \n- **Request Body**: This endpoint does not require a request body. All necessary parameters are passed through the URL as query parameters if applicable.\n    \n\n### Response Structure\n\nThe response from this endpoint will typically include:\n\n- **Status Code**: Indicates the success or failure of the request (e.g., 200 for success).\n    \n- **Data**: An array of opportunity objects, each containing relevant details such as:\n    \n    - `id`: Unique identifier for the opportunity.\n        \n    - `title`: Title of the opportunity.\n        \n    - `description`: A brief description of what the opportunity entails.\n        \n    - `created_at`: Timestamp indicating when the opportunity was created.\n        \n    - `updated_at`: Timestamp indicating when the opportunity was last updated.\n        \n\n### Example Response\n\n``` json\n{\n  \"status\": \"success\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"title\": \"Opportunity 1\",\n      \"description\": \"Description of opportunity 1\",\n      \"created_at\": \"2023-01-01T00:00:00Z\",\n      \"updated_at\": \"2023-01-02T00:00:00Z\"\n    },\n    {\n      \"id\": 2,\n      \"title\": \"Opportunity 2\",\n      \"description\": \"Description of opportunity 2\",\n      \"created_at\": \"2023-01-03T00:00:00Z\",\n      \"updated_at\": \"2023-01-04T00:00:00Z\"\n    }\n  ]\n}\n\n ```\n\nThis response format provides a clear structure for clients to understand the opportunities available and their respective details."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Opportunity By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/opportunities/3",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"opportunities",
+						"3"
+					]
+				},
+				"description": "## API Endpoint: Get Opportunity by ID\n\n### Purpose\n\nThis endpoint retrieves detailed information about a specific opportunity identified by its unique ID. It is useful for clients who need to access the details of a particular opportunity in the system.\n\n### Request Format\n\n- **Method**: GET\n    \n- **URL**: `https://68d20c66cf18.ngrok-free.app/api/opportunities/{id}`\n    \n- **Path Parameter**:\n    \n    - `id` (integer): The unique identifier of the opportunity you wish to retrieve. In this example, the ID is `3`.\n        \n\n### Response Structure\n\nThe response will contain the details of the opportunity in a structured format. The expected response format includes the following keys:\n\n- `id`: The unique identifier of the opportunity.\n    \n- `title`: The title of the opportunity.\n    \n- `description`: A detailed description of the opportunity.\n    \n- `status`: The current status of the opportunity (e.g., open, closed).\n    \n- `created_at`: The timestamp when the opportunity was created.\n    \n- `updated_at`: The timestamp when the opportunity was last updated.\n    \n\n### Example Response\n\n``` json\n{\n  \"id\": 3,\n  \"title\": \"Opportunity Title\",\n  \"description\": \"Detailed description of the opportunity.\",\n  \"status\": \"open\",\n  \"created_at\": \"2023-01-01T00:00:00Z\",\n  \"updated_at\": \"2023-01-10T00:00:00Z\"\n}\n\n ```\n\nThis endpoint is essential for applications that require access to specific opportunity details for display or processing purposes."
+			},
+			"response": []
+		},
+		{
+			"name": "Post Opportunity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON = pm.response.json();\r",
+							"\r",
+							"// Test for response status code\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test for response time\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response schema\r",
+							"pm.test(\"Schema is valid\", function () {\r",
+							"  var schema = {\r",
+							"    type: \"object\",\r",
+							"    properties: {\r",
+							"      message: { type: \"string\" },\r",
+							"      errors: {\r",
+							"        type: \"object\",\r",
+							"        properties: {\r",
+							"          name: { type: \"array\" },\r",
+							"          url: { type: \"array\" },\r",
+							"          type: { type: \"array\" },\r",
+							"          status: { type: \"array\" }\r",
+							"        },\r",
+							"        required: [\"name\", \"url\", \"type\", \"status\"]\r",
+							"      }\r",
+							"    },\r",
+							"    required: [\"message\", \"errors\"]\r",
+							"  };\r",
+							"\r",
+							"  pm.expect(tv4.validate(responseJSON, schema)).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1|2wsDfqbvJRH1bh0YwCGl45AIjfWuO190RW07NXiIc9d55b34",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Climate Fellowship 2028\",\r\n  \"description\": \"A program for young leaders aiming to tackle climate change.\",\r\n  \"url\": \"https://climatefellowshipcreaters.example1.com\",\r\n  \"country_region\": \"Nigeria\",\r\n  \"deadline\": \"2025-08-10\",\r\n  \"type\": \"Scholarship\",\r\n  \"status\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/opportunities",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"opportunities"
+					]
+				},
+				"description": "## API Endpoint: Create Opportunity\n\nThis endpoint allows users to create a new opportunity in the system. It is designed to accept various details about the opportunity, including its name, description, URL, country or region, deadline, type, and status.\n\n### Request Format\n\n- **Method**: POST\n    \n- **URL**: `https://68d20c66cf18.ngrok-free.app/api/opportunities`\n    \n\n### Request Body\n\nThe request body must be in JSON format and include the following parameters:\n\n- **name** (string): The name of the opportunity (e.g., \"Climate Fellowship 2027\").\n    \n- **description** (string): A brief description of the opportunity (e.g., \"A program for young leaders...\").\n    \n- **url** (string): A URL link providing more information about the opportunity (e.g., \"[https://climatefellowshipcreat...\"](https://climatefellowshipcreat...)).\n    \n- **country_region** (string): The country or region where the opportunity is available (e.g., \"Nigeria\").\n    \n- **deadline** (string): The deadline for applications in YYYY-MM-DD format (e.g., \"2025-08-10\").\n    \n- **type** (string): The type of opportunity (e.g., \"Scholarship\").\n    \n- **status** (string): The current status of the opportunity (e.g., \"active\").\n    \n\n### Response Structure\n\nUpon a successful request, the API will respond with a confirmation of the created opportunity. The response will typically include:\n\n- **id** (string): The unique identifier for the created opportunity.\n    \n- **name** (string): The name of the opportunity as provided in the request.\n    \n- **description** (string): The description of the opportunity as provided in the request.\n    \n- **url** (string): The URL associated with the opportunity.\n    \n- **country_region** (string): The country or region of the opportunity.\n    \n- **deadline** (string): The deadline for the opportunity.\n    \n- **type** (string): The type of opportunity.\n    \n- **status** (string): The status of the opportunity.\n    \n\n### Example Request Body\n\n``` json\n{\n  \"name\": \"Climate Fellowship 2028\",\n  \"description\": \"A program for young leaders aiming to tackle climate change.\",\n  \"url\": \"https://climatefellowshipcreaters.example1.com\",\n  \"country_region\": \"Nigeria\",\n  \"deadline\": \"2025-08-10\",\n  \"type\": \"Scholarship\",\n  \"status\": \"active\"\n}\n\n ```\n\nThis endpoint is essential for organizations looking to manage and publish opportunities for potential applicants effectively."
+			},
+			"response": []
+		},
+		{
+			"name": "Put/Edit opportunity",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 15|ec4u232fANQF5p9IGnzzJAWCI8v1gDSDuZVvfvE0303158e7",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Updated Climate Fellowship 2027\",\r\n  \"status\": \"closed\"\r\n}"
+				},
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/opportunities/471",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"opportunities",
+						"471"
+					]
+				},
+				"description": "## Update Opportunity\n\nThis endpoint allows you to update an existing opportunity in the system. By sending a PUT request to the specified URL, you can modify the details of an opportunity identified by its unique ID.\n\n### Request\n\n**URL:** `https://68d20c66cf18.ngrok-free.app/api/opportunities/{id}`  \n**Method:** `PUT`\n\n#### Path Parameters\n\n- `id` (required): The unique identifier of the opportunity you wish to update.\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should contain the following parameters:\n\n- `name` (string): The new name for the opportunity. This is a required field.\n    \n- `status` (string): The updated status of the opportunity. This can be set to values such as \"open\", \"closed\", etc.\n    \n\n**Example Request Body:**\n\n``` json\n{\n  \"name\": \"Updated Climate Fellowship\",\n  \"status\": \"closed\"\n}\n\n ```\n\n### Response\n\nUpon a successful update, the server will respond with a status code indicating the outcome of the request. The response body typically contains the updated opportunity details, confirming that the changes have been applied.\n\n**Expected Response Structure:**\n\n- `id`: The unique identifier of the updated opportunity.\n    \n- `name`: The updated name of the opportunity.\n    \n- `status`: The updated status of the opportunity.\n    \n- `updated_at`: Timestamp indicating when the opportunity was last updated.\n    \n\n### Notes\n\n- Ensure that the opportunity ID provided in the URL corresponds to an existing opportunity in the system.\n    \n- The request will fail if required fields are missing or if the provided values do not conform to expected formats.\n    \n\nThis endpoint is essential for maintaining accurate and up-to-date records of opportunities within the application."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Opportunity",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 15|ec4u232fANQF5p9IGnzzJAWCI8v1gDSDuZVvfvE0303158e7",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Updated Climate Fellowship 2027\",\r\n  \"status\": \"closed\"\r\n}"
+				},
+				"url": {
+					"raw": "https://68d20c66cf18.ngrok-free.app/api/opportunities/471",
+					"protocol": "https",
+					"host": [
+						"68d20c66cf18",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"opportunities",
+						"471"
+					]
+				},
+				"description": "### DELETE Opportunity\n\nThis endpoint is used to delete a specific opportunity identified by its unique ID. In this case, the opportunity with the ID `471` is targeted for deletion.\n\n#### Request Format\n\n- **Method:** DELETE\n    \n- **URL:** `https://68d20c66cf18.ngrok-free.app/api/opportunities/{id}`\n    \n\n#### Request Body\n\nWhile the DELETE request typically does not require a body, the last call included a payload which may be relevant for context. The payload structure is as follows:\n\n``` json\n{\n  \"name\": \"string\", // The name of the opportunity\n  \"status\": \"string\" // The current status of the opportunity\n}\n\n ```\n\nNote: The parameters in the request body may not be necessary for the deletion process itself, but they can provide context for the operation.\n\n#### Response Structure\n\nUpon successful deletion of the opportunity, the server will respond with a status code of `200` and a JSON object containing a message. The expected response format is:\n\n``` json\n{\n  \"message\": \"\" // A confirmation message indicating the deletion was successful\n}\n\n ```\n\n#### Summary\n\nThis DELETE request effectively removes the specified opportunity from the system, and a successful response confirms the action. Ensure that the opportunity ID is correctly specified in the URL to avoid errors."
+			},
+			"response": []
+		}
+	]
+}
